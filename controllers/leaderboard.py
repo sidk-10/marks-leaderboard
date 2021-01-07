@@ -20,6 +20,7 @@ class Leaderboard(Resource):
         leaderboard = session.query(StudentModel, MarksModel).join(MarksModel, StudentModel.roll_no == MarksModel.roll_no).all()
         for row in leaderboard:
             # print(row[0].json(), row[1].json())
-            response.append(row[0].json().update(row[1].json()))
+            temp = {**row[0].json(), **row[1].json()}
+            response.append(temp)
         print(response)
         return response
