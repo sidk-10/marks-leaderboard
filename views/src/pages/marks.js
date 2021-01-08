@@ -4,8 +4,11 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import $ from 'jquery'
-import config from "../config.json"
+// import config from "../config.json"
 
+const config = {
+    "base_url": "https://marks-leaderboard.herokuapp.com/"
+}
 // styles
 const pageStyles = {
     color: "#232129",

@@ -25,8 +25,11 @@ import Switch from '@material-ui/core/Switch'
 import DeleteIcon from '@material-ui/icons/Delete'
 import FilterListIcon from '@material-ui/icons/FilterList'
 import $ from 'jquery'
-import config from '../config.json'
+// import config from "../config.json"
 
+const config = {
+    "base_url": "https://marks-leaderboard.herokuapp.com/"
+}
 function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein }
 }
