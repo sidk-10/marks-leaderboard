@@ -16,8 +16,8 @@ class Student(Resource):
         "chemistry": fields.Int(required=True),
         "maths": fields.Int(required=True)
     }
-
-    @use_args(student_args, location="query")
+    # print(request.get_data())
+    @use_args(student_args, location="form")
     def post(self, args):
         student = StudentModel({
             "student_name": args["student_name"],
@@ -30,6 +30,7 @@ class Student(Resource):
             "maths": args["maths"]
         })
         if StudentModel.check_in_db(session, args):
+            print(args)
             response = {
                 "status": "failed",
                 "message": "roll no already exists"

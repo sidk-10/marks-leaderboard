@@ -3,6 +3,7 @@ import Link from 'gatsby-link'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import $ from 'jquery'
 import config from "../config.json"
 
 // styles
@@ -45,31 +46,46 @@ const MarksPage = () => {
             [event.target.id] : parseInt(event.target.value)
         })
     }
-    async function enterMarks() {
-        console.log("clicked")
-        let url = config["base_url"] + "/api/enter_marks"
+    const enterMarks = () => {
         let details = document.getElementById("studentDetails")
+        let url = config["base_url"] + "api/enter_marks"
         let data = {
-            "roll_no": details["rollNo"],
-            "student_name": details["studentName"],
-            "physics": details["physics"],
-            "chemistry": details["chemistry"],
-            "maths": details["maths"]
+            roll_no: parseInt(details["rollNo"].value),
+            student_name: details["studentName"].value,
+            physics: parseInt(details["physics"].value),
+            chemistry: parseInt(details["chemistry"].value),
+            maths: parseInt(details["maths"].value)
         }
-        const response = await fetch(url, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            headers: {
-            'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
+        console.log(data)
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: data,
+            success: (response) => {
+                console.log(response)
             },
-            body: data
+            error: (response) => {
+                console.log(response)
+            }
         })
-        // alert("Request completed", response.json()["student_name"])
-        console.log(response.json())
-        // return response.json()    
     }
+    // async function enterMarks() {
+    //     console.log("clicked")
+        // let url = config["base_url"] + "api/enter_marks"
+        // let details = document.getElementById("studentDetails")
+    //     let data = {
+            // "roll_no": parseInt(details["rollNo"].value),
+            // "student_name": details["studentName"].value,
+            // "physics": parseInt(details["physics"].value),
+            // "chemistry": parseInt(details["chemistry"].value),
+            // "maths": parseInt(details["maths"].value)
+    //     }
+    //     console.log(data)
+        
+    //     // alert("Request completed", response.json()["student_name"])
+    //     console.log(response)
+    //     // return response.json()    
+    // }
 
     const preventDefault = (event) => event.preventDefault()
     return (

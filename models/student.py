@@ -43,8 +43,10 @@ class StudentModel(Base):
     @classmethod
     def check_in_db(cls, session, data):
         try:
+            print("rno", data["roll_no"], type(data["roll_no"]))
             result = session.query(cls).filter(cls.roll_no == data["roll_no"]).all()
-            if(len[result] > 0): 
+            print(result)
+            if(len(result) > 0): 
                 response = True
             else:
                 response = False
