@@ -14,8 +14,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'some_secret_key'
 api = Api(app)
-cors = CORS(app, resources={r"/*": {"origins": "*"}},
-            allow_headers=["Content-Type"], intercept_exceptions=False)
+cors = CORS(app)
 
 
 @app.route('/')

@@ -18,7 +18,7 @@ class Student(Resource):
     }
 
     @use_args(student_args, location="query")
-    def get(self, args):
+    def post(self, args):
         student = StudentModel({
             "student_name": args["student_name"],
             "roll_no": args["roll_no"]
