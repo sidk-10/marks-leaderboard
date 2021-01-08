@@ -17,7 +17,8 @@ class Leaderboard(Resource):
     # @use_args(student_args, location="query")
     def get(self):
         response = []
-        leaderboard = session.query(StudentModel, MarksModel).join(MarksModel, StudentModel.roll_no == MarksModel.roll_no).all()
+        try: leaderboard = session.query(StudentModel, MarksModel).join(MarksModel, StudentModel.roll_no == MarksModel.roll_no).all()
+        except: session.rollback()
         for row in leaderboard:
             # print(row[0].json(), row[1].json())
             temp = {**row[0].json(), **row[1].json()}

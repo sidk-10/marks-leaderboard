@@ -29,15 +29,17 @@ class Student(Resource):
             "chemistry": args["chemistry"],
             "maths": args["maths"]
         })
-        if StudentModel.check_in_db(session, args):
-            print(args)
-            response = {
-                "status": "failed",
-                "message": "roll no already exists"
-            }
-            return response
-        StudentModel.save_to_db(student, session)
-        MarksModel.save_to_db(marks, session)
+        try:
+            if StudentModel.check_in_db(session, args):
+                print(args)
+                response = {
+                    "status": "failed",
+                    "message": "roll no already exists"
+                }
+                return response
+            StudentModel.save_to_db(student, session)
+            MarksModel.save_to_db(marks, session)
+        except: session.rollback()
         response = args
         response["status"] = "success"
         return response
