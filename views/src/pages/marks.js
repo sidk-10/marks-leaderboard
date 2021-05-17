@@ -67,7 +67,7 @@ const MarksPage = () => {
             chemistry: parseInt(details["chemistry"].value),
             maths: parseInt(details["maths"].value)
         }
-        if(data.roll_no == "" || data.student_name == "" || data.physics == "" || data.maths == "" || data.chemistry == "") {alert("Please fill required fields!"); return}
+        if(data.roll_no == "" || data.student_name == "" || data.physics == "" || data.maths == "" || data.chemistry == "") {alert("Please fill required fields!"); return;}
         event.target.innerHTML = "Loading..."
         let url = config["base_url"] + "api/enter_marks"
         
@@ -101,17 +101,17 @@ const MarksPage = () => {
             <form noValidate id="studentDetails" autoComplete="off">
                 <Grid container direction="column" styles={marksForm}>
                     <Grid container style={marksFormRow} spacing={1}>
-                        <Grid item><TextField type="number" id="rollNo" label="Roll No" name="rollNo" variant="outlined" required={true} /></Grid>
-                        <Grid item><TextField id="name" label="Name" name="studentName" variant="outlined" required={true}/></Grid>
+                        <Grid item><TextField type="number" id="rollNo" label="Roll No" name="rollNo" variant="filled" required={true} /></Grid>
+                        <Grid item><TextField id="name" label="Name" name="studentName" variant="filled" required={true}/></Grid>
                     </Grid>
                     <Grid container style={marksFormRow} spacing={1}>
-                        <Grid item><TextField type="number" id="physics" label="Physics Marks" name="physics" variant="outlined" onChange={addMarks} required={true}/></Grid>
-                        <Grid item><TextField type="number" id="chemistry" label="Chemistry Marks" name="chemistry" variant="outlined" onChange={addMarks} required={true}/></Grid>
-                        <Grid item><TextField type="number" id="mathematics" label="Maths Marks" name="maths" variant="outlined" onChange={addMarks} required={true}/></Grid>
+                        <Grid item><TextField type="number" id="physics" label="Physics Marks" name="physics" variant="filled" onChange={addMarks} required={true}/></Grid>
+                        <Grid item><TextField type="number" id="chemistry" label="Chemistry Marks" name="chemistry" variant="filled" onChange={addMarks} required={true}/></Grid>
+                        <Grid item><TextField type="number" id="mathematics" label="Maths Marks" name="maths" variant="filled" onChange={addMarks} required={true}/></Grid>
                     </Grid>
                     <Grid container style={marksFormRow} spacing={1}>
-                        <Grid item><TextField id="total" label="Total" name="total" defaultValue={total} variant="outlined" disabled={true} /></Grid>
-                        <Grid item><TextField id="percentage" label="Percentage" name="percentage" defaultValue={(total / 300).toPrecision(2)} variant="outlined" disabled={true} /></Grid>
+                        <Grid item><TextField id="total" label="Total" name="total" defaultValue={total} variant="filled" disabled={true} /></Grid>
+                        <Grid item><TextField id="percentage" label="Percentage" name="percentage" defaultValue={(total / 300).toPrecision(2)} variant="filled" disabled={true} /></Grid>
                     </Grid>
                     <Grid container>
                     <button variant="contained" className="btn btn-primary" disableElevation onClick={enterMarks}>
@@ -134,7 +134,10 @@ const MarksPage = () => {
             </Grid> */}
             <ul class="nav nav-pills nav-fill" style={{marginTop: 20}}>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/marks">Marks</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/leaderboard">Leaderboard</a>

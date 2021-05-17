@@ -296,6 +296,9 @@ const LeaderboardPage = () => {
                     <a class="nav-link" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/marks">Marks</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" href="/leaderboard">Leaderboard</a>
                 </li>
             </ul>

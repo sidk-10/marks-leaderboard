@@ -23,7 +23,7 @@ const IndexPage = () => {
             <div style={{width: "75px"}}>
             <ul class="nav flex-column nav-pills nav-fill" style={{marginTop: 20}}>
                 <li class="nav-item mt-2">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/marks">Marks</a>
                 </li>
                 <li class="nav-item mt-2">
                     <a class="nav-link active" href="/leaderboard">Leaderboard</a>
