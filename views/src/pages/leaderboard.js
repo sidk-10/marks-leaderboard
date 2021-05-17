@@ -25,6 +25,8 @@ import Switch from '@material-ui/core/Switch'
 import DeleteIcon from '@material-ui/icons/Delete'
 import FilterListIcon from '@material-ui/icons/FilterList'
 import $ from 'jquery'
+import "bootstrap/dist/css/bootstrap.min.css"
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 // import config from "../config.json"
 
