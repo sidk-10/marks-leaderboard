@@ -169,21 +169,6 @@ function EnhancedTable({rows}) {
         setSelected(newSelected)
     }
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage)
-    }
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10))
-        setPage(0)
-    }
-
-    const handleChangeDense = (event) => {
-        setDense(event.target.checked)
-    }
-
-    const isSelected = (name) => selected.indexOf(name) !== -1
-
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
 
     return (
@@ -192,7 +177,7 @@ function EnhancedTable({rows}) {
         {rows.length <= 1 ? (<div style={{textAlign: "center", padding: 15}}><CircularProgress  color="primary" /> </div>): null}
                     
             {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
-            {rows.length >= 1 ? ( <TableContainer>
+            {rows.length > 1 ? ( <TableContainer>
             <Table
                 className={classes.table}
                 aria-labelledby="tableTitle"
