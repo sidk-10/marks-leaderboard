@@ -14,6 +14,7 @@ const pageStyles = {
     color: "#232129",
     padding: "96px",
     fontFamily: "-apple-system, Roboto, sans-serif, serif",
+    height: "100vh"
 }
 const marksForm = {
 
@@ -57,9 +58,8 @@ const MarksPage = () => {
         })
     }
     const enterMarks = (event) => {
-        event.target.innerHTML = "Loading..."
         let details = document.getElementById("studentDetails")
-        let url = config["base_url"] + "api/enter_marks"
+    
         let data = {
             roll_no: parseInt(details["rollNo"].value),
             student_name: details["studentName"].value,
@@ -67,6 +67,10 @@ const MarksPage = () => {
             chemistry: parseInt(details["chemistry"].value),
             maths: parseInt(details["maths"].value)
         }
+        if(data.roll_no == "" || data.student_name == "" || data.physics == "" || data.maths == "" || data.chemistry == "") {alert("Please fill required fields!"); return}
+        event.target.innerHTML = "Loading..."
+        let url = config["base_url"] + "api/enter_marks"
+        
         console.log(data)
         $.ajax({
             url: url,
@@ -91,33 +95,33 @@ const MarksPage = () => {
 
     const preventDefault = (event) => event.preventDefault()
     return (
-        <main style={pageStyles}>
+        <main style={pageStyles} className="bg-light">
             <title>Enter Marks</title>
-            <h1>ENTER MARKS</h1>
+            <h1 className='text-muted'>ENTER MARKS</h1>
             <form noValidate id="studentDetails" autoComplete="off">
                 <Grid container direction="column" styles={marksForm}>
-                    <Grid container style={marksFormRow}>
-                        <Grid item><TextField type="number" id="rollNo" label="Roll No" name="rollNo" variant="outlined" /></Grid>
-                        <Grid item><TextField id="name" label="Name" name="studentName" variant="outlined" /></Grid>
+                    <Grid container style={marksFormRow} spacing={1}>
+                        <Grid item><TextField type="number" id="rollNo" label="Roll No" name="rollNo" variant="outlined" required={true} /></Grid>
+                        <Grid item><TextField id="name" label="Name" name="studentName" variant="outlined" required={true}/></Grid>
                     </Grid>
-                    <Grid container style={marksFormRow}>
-                        <Grid item><TextField type="number" id="physics" label="Physics Marks" name="physics" variant="outlined" onChange={addMarks} /></Grid>
-                        <Grid item><TextField type="number" id="chemistry" label="Chemistry Marks" name="chemistry" variant="outlined" onChange={addMarks} /></Grid>
-                        <Grid item><TextField type="number" id="mathematics" label="Maths Marks" name="maths" variant="outlined" onChange={addMarks} /></Grid>
+                    <Grid container style={marksFormRow} spacing={1}>
+                        <Grid item><TextField type="number" id="physics" label="Physics Marks" name="physics" variant="outlined" onChange={addMarks} required={true}/></Grid>
+                        <Grid item><TextField type="number" id="chemistry" label="Chemistry Marks" name="chemistry" variant="outlined" onChange={addMarks} required={true}/></Grid>
+                        <Grid item><TextField type="number" id="mathematics" label="Maths Marks" name="maths" variant="outlined" onChange={addMarks} required={true}/></Grid>
                     </Grid>
-                    <Grid container style={marksFormRow}>
+                    <Grid container style={marksFormRow} spacing={1}>
                         <Grid item><TextField id="total" label="Total" name="total" defaultValue={total} variant="outlined" disabled={true} /></Grid>
                         <Grid item><TextField id="percentage" label="Percentage" name="percentage" defaultValue={(total / 300).toPrecision(2)} variant="outlined" disabled={true} /></Grid>
                     </Grid>
                     <Grid container>
-                    <Button variant="contained" color="primary" disableElevation onClick={enterMarks}>
+                    <button variant="contained" className="btn btn-primary" disableElevation onClick={enterMarks}>
                         SUBMIT
-                    </Button>
+                    </button>
                     </Grid>
                 </Grid>
             </form>
-            <Grid container style={navigation}>
-                <Grid item style={navigationTab}>
+            {/* <Grid container style={navigation}>
+                <Grid item style={navigationTab} className="nav-pills nav-fill">
                     <Link to="/">
                         Home
                     </Link>
@@ -127,7 +131,15 @@ const MarksPage = () => {
                         Leaderboard
                     </Link>
                 </Grid>
-            </Grid>
+            </Grid> */}
+            <ul class="nav nav-pills nav-fill" style={{marginTop: 20}}>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/leaderboard">Leaderboard</a>
+                </li>
+            </ul>
         </main>
     )
 }

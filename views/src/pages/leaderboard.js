@@ -25,6 +25,7 @@ import Switch from '@material-ui/core/Switch'
 import DeleteIcon from '@material-ui/icons/Delete'
 import FilterListIcon from '@material-ui/icons/FilterList'
 import $ from 'jquery'
+import CircularProgress from '@material-ui/core/CircularProgress';
 // import config from "../config.json"
 
 const config = {
@@ -184,10 +185,12 @@ function EnhancedTable({rows}) {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
 
     return (
-        <div className={classes.root}>
-        <Paper className={classes.paper} >
+        <div className={"shadow rounded " + classes.root}>
+        <Paper className={classes.paper} elevation={0} square={false}>
+        {rows.length <= 1 ? (<div style={{textAlign: "center", padding: 15}}><CircularProgress  color="primary" /> </div>): null}
+                    
             {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
-            <TableContainer>
+            {rows.length > 1 ? ( <TableContainer>
             <Table
                 className={classes.table}
                 aria-labelledby="tableTitle"
@@ -204,6 +207,7 @@ function EnhancedTable({rows}) {
                 rowCount={rows.length}
                 />
                 <TableBody>
+                    
                 {stableSort(rows, getComparator(order, orderBy))
                     .map((row, index) => {
 
@@ -228,7 +232,8 @@ function EnhancedTable({rows}) {
                 )}
                 </TableBody>
             </Table>
-            </TableContainer>
+            </TableContainer>) : null}
+           
         </Paper>
         </div>
     )
@@ -240,6 +245,7 @@ const pageStyles = {
     color: "#232129",
     padding: "96px",
     fontFamily: "-apple-system, Roboto, sans-serif, serif",
+    height: "100vh"
 }
 const navigation = {
     marginTop: "1rem"
@@ -281,22 +287,18 @@ const LeaderboardPage = () => {
     }, [])
     const preventDefault = (event) => event.preventDefault()
     return (
-        <main style={pageStyles}>
+        <main style={pageStyles} className="bg-light">
             <title>Leaderboard</title>
-            <h1>LEADERBOARD</h1>
+            <h1 className="text-muted">LEADERBOARD</h1>
             <EnhancedTable rows={leaderboardData} />
-            <Grid container style={navigation}>
-                <Grid item style={navigationTab}>
-                    <Link to="/">
-                        Home
-                    </Link>
-                </Grid>
-                <Grid item style={navigationTab}>
-                    <Link to="/marks">
-                        Marks
-                    </Link>
-                </Grid>
-            </Grid>
+            <ul class="nav nav-pills nav-fill" style={{marginTop: 20}}>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/leaderboard">Leaderboard</a>
+                </li>
+            </ul>
         </main>
     )
 }
