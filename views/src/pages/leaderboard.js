@@ -192,7 +192,7 @@ function EnhancedTable({rows}) {
         {rows.length <= 1 ? (<div style={{textAlign: "center", padding: 15}}><CircularProgress  color="primary" /> </div>): null}
                     
             {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
-            {rows.length > 1 ? ( <TableContainer>
+            {rows.length >= 1 ? ( <TableContainer>
             <Table
                 className={classes.table}
                 aria-labelledby="tableTitle"
