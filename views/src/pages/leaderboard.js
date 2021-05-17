@@ -33,9 +33,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const config = {
     "base_url": "https://marks-leaderboard.herokuapp.com/"
 }
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein }
-}
+// const config = {
+//     "base_url": "http://127.0.0.1:5000/"
+// }
 
 // const rows = [
 //     createData('Cupcake', 305, 3.7, 67, 4.3),

@@ -11,6 +11,9 @@ import "bootstrap/dist/css/bootstrap.min.css"
 const config = {
     "base_url": "https://marks-leaderboard.herokuapp.com/"
 }
+// const config = {
+//     "base_url": "http://127.0.0.1:5000/"
+}
 // styles
 const pageStyles = {
     color: "#232129",
@@ -80,12 +83,14 @@ const MarksPage = () => {
             data: data,
             success: (response) => {
                 
-                if(window != undefined) {
-                    window.location.reload()
-                }
+                
                 if(response["status"] != "failed") alert("Marks successfully entered!" + "\nCheckout Leaderboard!")
                 else {
                     alert("Roll No. already exists!")
+                    return;
+                }
+                if(window != undefined) {
+                    window.location.reload()
                 }
                 // console.log(response)
             },
