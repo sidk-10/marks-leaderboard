@@ -84,14 +84,14 @@ const MarksPage = () => {
             success: (response) => {
                 
                 
-                if(response["status"] != "failed") alert("Marks successfully entered!" + "\nCheckout Leaderboard!")
+                if(response["status"] != "failed") {alert("Marks successfully entered!" + "\nCheckout Leaderboard!"); return;}
                 else {
                     alert("Roll No. already exists!")
                     return;
                 }
-                if(window != undefined) {
-                    window.location.reload()
-                }
+                // if(window != undefined) {
+                //     window.location.reload()
+                // }
                 // console.log(response)
             },
             error: (response) => {
